@@ -16,6 +16,13 @@ The `Resources` section has links about how to install the following requirement
 docker pull amazon/aws-stepfunctions-local
 ```
 
+### Mock file
+
+Some important notes about the `state-machine/test/MockConfigFile.json` file:
+
+- The third line value is the created step function's name (specified in the `makefile` file).
+
+
 ## Run AWS SF Local
 
 You must be in the same path as the `makefile` file.
@@ -26,11 +33,27 @@ Start a Docker container:
 make run
 ```
 
-With the previous Docker container running, open a different terminal and create the step function:
+With the previous Docker container running, open a different terminal and execute the command to create the step function and run the test:
 
 ```bash
-make create
+make all
 ```
+
+Note. If you receive this error:
+
+```bash
+An error occurred (StateMachineAlreadyExists) when calling the CreateStateMachine operation: State Machine Already Exists: 'arn:aws:states:us-east-1:123456789012:stateMachine:LocalTesting'
+make: *** [makefile:10: create] Error 255
+```
+
+Or this one:
+
+```bash
+An error occurred (ExecutionAlreadyExists) when calling the StartExecution operation: Execution Already Exists: 'arn:aws:states:us-east-1:123456789012:execution:LocalTesting:CorrectTest'
+make: *** [makefile:16: correct-test] Error 255
+```
+
+Stop the Docker container, and run `make run` and `make all` again.
 
 ## Resources
 

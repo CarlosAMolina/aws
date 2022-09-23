@@ -11,3 +11,11 @@ create:
 		--endpoint-url http://localhost:8083 \
 		--definition file://state-machine/state-machine.asl.json \
 		--name "LocalTesting" --role-arn "arn:aws:iam::123456789012:role/DummyRole"
+
+correct-test:
+	aws stepfunctions start-execution \
+		--endpoint http://localhost:8083 \
+		--name CorrectTest \
+		--state-machine arn:aws:states:us-east-1:123456789012:stateMachine:LocalTesting#CorrectTest
+
+all: create correct-test

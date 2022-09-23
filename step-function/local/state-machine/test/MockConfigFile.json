@@ -1,0 +1,12 @@
+{
+  "StateMachines": {
+    "LocalTesting": {
+      "TestCases": {
+        "CorrectTest": {
+        }
+      }
+    }
+  },
+  "MockedResponses": {
+  }
+}
