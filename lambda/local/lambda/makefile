@@ -4,7 +4,7 @@ run:
 	LAMBDA_REMOTE_DOCKER=0 localstack start
 
 create:
-	awslocal lambda create-function --function-name my-cool-local-function \
+	awslocal lambda create-function --function-name foo-function \
 		--code S3Bucket="__local__",S3Key="$(ROOT_DIR)/src/" \
 		--handler lambda_handler.lambda_handler \
 		--runtime python3.8 \
@@ -12,7 +12,7 @@ create:
 
 invoke:
 	awslocal lambda invoke \
-		--function-name my-cool-local-function \
+		--function-name foo-function \
 		--payload '{"file_path": "/foo/bar"}' \
 		src/output.txt
 
