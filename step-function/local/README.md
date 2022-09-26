@@ -6,9 +6,8 @@ Folder with files to run AWS Step Function locally.
 
 The `Resources` section has links about how to install the following requirements.
 
-- Docker.
 - AWS CLI.
-- AWS SAM CLI.
+- AWS SF local Docker.
 
 ### Download de Docker image:
 
@@ -64,7 +63,6 @@ In order to avoid read all the logs, we can filter the last step function log of
 ## Resources
 
 - AWS CLI. User values: <https://docs.dev.awshelena.es/books/aws/page/aws-cli---vdc>
-- AWS SAM CLI. Install: <https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html>
 - AWS SF local. Download Docker image: <https://docs.aws.amazon.com/step-functions/latest/dg/sfn-local-docker.html>
 - AWS SF local. Configure Docker credentials and start Docker image: <https://docs.aws.amazon.com/step-functions/latest/dg/sfn-local-docker.html>
 - AWS SF local. Tutorial code: <https://github.com/mavi888/sam-stepfunctions-sdk-integration>
