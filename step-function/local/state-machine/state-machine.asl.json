@@ -4,16 +4,10 @@
   "States": {
     "FirstStep": {
       "Type": "Pass",
-      "Parameters": {
-        "foo init": "bar init"
-      },
       "Next": "LastStep"
     },
     "LastStep": {
       "Type": "Pass",
-      "Parameters": {
-        "foo end": "bar end"
-      },
       "End": true
     }
   }

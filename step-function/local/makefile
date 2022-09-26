@@ -16,6 +16,7 @@ correct-test:
 	aws stepfunctions start-execution \
 		--endpoint http://localhost:8083 \
 		--name CorrectTest \
+		--input file://state-machine/test/input.json \
 		--state-machine arn:aws:states:us-east-1:123456789012:stateMachine:LocalTesting#CorrectTest
 
 all: create correct-test
