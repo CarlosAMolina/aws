@@ -16,7 +16,7 @@
           "Next": "RunFileInPath2"
         }
       ],
-      "Default": "RunReport"
+      "Default": "NoManagedFile"
     },
     "RunFileInPath1": {
       "Type": "Pass",
@@ -27,6 +27,10 @@
       "Next": "RunReport"
     },
     "RunReport": {
+      "Type": "Pass",
+      "End": true
+    },
+    "NoManagedFile": {
       "Type": "Pass",
       "End": true
     }
