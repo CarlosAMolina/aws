@@ -17,21 +17,21 @@ correct-test-path-1:
 		--endpoint http://localhost:8083 \
 		--name CorrectTestPath1 \
 		--input file://state-machine/test/input-path-1.json \
-		--state-machine arn:aws:states:us-east-1:123456789012:stateMachine:LocalTesting#CorrectTest
+		--state-machine arn:aws:states:us-east-1:123456789012:stateMachine:LocalTesting#CorrectPathTest
 
 correct-test-path-2:
 	aws stepfunctions start-execution \
 		--endpoint http://localhost:8083 \
 		--name CorrectTestPath2 \
 		--input file://state-machine/test/input-path-2.json \
-		--state-machine arn:aws:states:us-east-1:123456789012:stateMachine:LocalTesting#CorrectTest
+		--state-machine arn:aws:states:us-east-1:123456789012:stateMachine:LocalTesting#CorrectPathTest
 
 correct-test-path-not-managed:
 	aws stepfunctions start-execution \
 		--endpoint http://localhost:8083 \
 		--name CorrectTestPathNotManaged \
 		--input file://state-machine/test/input-path-not-managed.json \
-		--state-machine arn:aws:states:us-east-1:123456789012:stateMachine:LocalTesting#CorrectTest
+		--state-machine arn:aws:states:us-east-1:123456789012:stateMachine:LocalTesting#CorrectPathTest
 
 all: create correct-test-path-1 correct-test-path-2 correct-test-path-not-managed
 

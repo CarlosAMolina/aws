@@ -2,11 +2,27 @@
   "StateMachines": {
     "LocalTesting": {
       "TestCases": {
-        "CorrectTest": {
+        "CorrectPathTest": {
+          "run-file-in-path-1": "RunFileInPath1MockedSuccess",
+          "run-file-in-path-2": "RunFileInPath2MockedSuccess"
         }
       }
     }
   },
   "MockedResponses": {
+    "RunFileInPath1MockedSuccess": {
+      "0": {
+        "Return": {
+          "date": "2021-11-11"
+        }
+      }
+    },
+    "RunFileInPath2MockedSuccess": {
+      "0": {
+        "Return": {
+          "date": "2022-02-22"
+        }
+      }
+    }
   }
 }

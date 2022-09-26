@@ -8,27 +8,27 @@
         {
           "Variable": "$.detail.object.key",
           "StringMatches": "path1/*.csv",
-          "Next": "RunFileInPath1"
+          "Next": "run-file-in-path-1"
         },
         {
           "Variable": "$.detail.object.key",
           "StringMatches": "path2/*.csv",
-          "Next": "RunFileInPath2"
+          "Next": "run-file-in-path-2"
         }
       ],
       "Default": "NoManagedFile"
     },
-    "RunFileInPath1": {
-      "Type": "Pass",
-      "Parameters": {"date": "2021-11-11"},
-      "Next": "RunReport"
+    "run-file-in-path-1": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:run-file-in-path-1",
+      "Next": "run-report"
     },
-    "RunFileInPath2": {
-      "Type": "Pass",
-      "Parameters": {"date": "2022-02-22"},
-      "Next": "RunReport"
+    "run-file-in-path-2": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:run-file-in-path-2",
+      "Next": "run-report"
     },
-    "RunReport": {
+    "run-report": {
       "Type": "Pass",
       "End": true
     },

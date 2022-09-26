@@ -59,7 +59,7 @@ Stop the Docker container, repeat the steps explained in this section.
 
 In the terminal where you executed `make run` you can see all the step function logs.
 
-In order to avoid read all the logs, we can filter the last step function log of each execution. In the new terminal where you executed `make all` you can see these logs running `make history`.
+In order to avoid read all the logs, we can filter the last step function log of each execution to check that it has the expected value. In the new terminal where you executed `make all` you can see these logs running `make history`.
 
 ## Resources
 
