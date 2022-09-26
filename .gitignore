@@ -1,2 +1,5 @@
 *.swp
+/lambda/local/lambda/env/
+/lambda/local/lambda/src/lambda-log.log
+/lambda/local/lambda/src/output.txt
 /lambda/local/lambda-and-api/sam-app/
