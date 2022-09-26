@@ -12,11 +12,19 @@ create:
 		--definition file://state-machine/state-machine.asl.json \
 		--name "LocalTesting" --role-arn "arn:aws:iam::123456789012:role/DummyRole"
 
-correct-test:
+correct-test-path-1:
 	aws stepfunctions start-execution \
 		--endpoint http://localhost:8083 \
-		--name CorrectTest \
-		--input file://state-machine/test/input.json \
+		--name CorrectTestPath1 \
+		--input file://state-machine/test/input-path-1.json \
 		--state-machine arn:aws:states:us-east-1:123456789012:stateMachine:LocalTesting#CorrectTest
 
-all: create correct-test
+correct-test-path-2:
+	aws stepfunctions start-execution \
+		--endpoint http://localhost:8083 \
+		--name CorrectTestPath2 \
+		--input file://state-machine/test/input-path-2.json \
+		--state-machine arn:aws:states:us-east-1:123456789012:stateMachine:LocalTesting#CorrectTest
+
+
+all: create correct-test-path-1 correct-test-path-2

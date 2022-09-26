@@ -1,12 +1,32 @@
 {
   "Comment": "A State Machine that process a video file",
-  "StartAt": "FirstStep",
+  "StartAt": "CheckPath",
   "States": {
-    "FirstStep": {
-      "Type": "Pass",
-      "Next": "LastStep"
+    "CheckPath": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.detail.object.key",
+          "StringMatches": "path1/*.csv",
+          "Next": "RunFileInPath1"
+        },
+        {
+          "Variable": "$.detail.object.key",
+          "StringMatches": "path2/*.csv",
+          "Next": "RunFileInPath2"
+        }
+      ],
+      "Default": "RunReport"
     },
-    "LastStep": {
+    "RunFileInPath1": {
+      "Type": "Pass",
+      "Next": "RunReport"
+    },
+    "RunFileInPath2": {
+      "Type": "Pass",
+      "Next": "RunReport"
+    },
+    "RunReport": {
       "Type": "Pass",
       "End": true
     }

@@ -1,0 +1,18 @@
+{
+  "detail-type": "Object Created",
+  "source": "aws.s3",
+  "time": "2022-09-13T19:40:19Z",
+  "region": "us-east-1",
+  "resources": [
+    "arn:aws:s3:::foo-bucket"
+  ],
+  "detail": {
+    "bucket": {
+      "name": "foo-bucket"
+    },
+    "object": {
+      "key": "path2/file.csv"
+    },
+    "reason": "PutObject"
+  }
+}
