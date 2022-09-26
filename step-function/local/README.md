@@ -33,7 +33,7 @@ Start a Docker container:
 make run
 ```
 
-With the previous Docker container running, open a different terminal and execute the command to create the step function and run the test:
+With the previous Docker container running, open a new terminal and execute the command to create the step function and run the test:
 
 ```bash
 make all
@@ -53,7 +53,13 @@ An error occurred (ExecutionAlreadyExists) when calling the StartExecution opera
 make: *** [makefile:16: correct-test] Error 255
 ```
 
-Stop the Docker container, and run `make run` and `make all` again.
+Stop the Docker container, repeat the steps explained in this section.
+
+### Analyze results
+
+In the terminal where you executed `make run` you can see all the step function logs.
+
+In order to avoid read all the logs, we can filter the last step function log of each execution. In the new terminal where you executed `make all` you can see these logs running `make history`.
 
 ## Resources
 

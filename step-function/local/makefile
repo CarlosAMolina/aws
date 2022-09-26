@@ -34,3 +34,23 @@ correct-test-path-not-managed:
 		--state-machine arn:aws:states:us-east-1:123456789012:stateMachine:LocalTesting#CorrectTest
 
 all: create correct-test-path-1 correct-test-path-2 correct-test-path-not-managed
+
+correct-test-path-1-h:
+	aws stepfunctions get-execution-history \
+		--endpoint http://localhost:8083 \
+		--execution-arn arn:aws:states:us-east-1:123456789012:execution:LocalTesting:CorrectTestPath1 \
+		--query 'events[?type==`ExecutionSucceeded`]'
+
+correct-test-path-2-h:
+	aws stepfunctions get-execution-history \
+		--endpoint http://localhost:8083 \
+		--execution-arn arn:aws:states:us-east-1:123456789012:execution:LocalTesting:CorrectTestPath2 \
+		--query 'events[?type==`ExecutionSucceeded`]'
+
+correct-test-path-not-managed-h:
+	aws stepfunctions get-execution-history \
+		--endpoint http://localhost:8083 \
+		--execution-arn arn:aws:states:us-east-1:123456789012:execution:LocalTesting:CorrectTestPathNotManaged \
+		--query 'events[?type==`ExecutionSucceeded`]'
+
+history: correct-test-path-1-h correct-test-path-2-h correct-test-path-not-managed-h
