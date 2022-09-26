@@ -13,7 +13,7 @@ create:
 invoke:
 	awslocal lambda invoke \
 		--function-name my-cool-local-function \
-		--payload '{"foo": "bar"}' \
+		--payload '{"file_path": "/foo/bar"}' \
 		src/output.txt
 
 all: create invoke

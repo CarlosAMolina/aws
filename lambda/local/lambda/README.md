@@ -8,13 +8,6 @@ pip install -r requirementst.txt
 
 ## Run lambda
 
-Download the code to execute:
-
-```bash
-cd /tmp/
-git clone git@github.com:awsdocs/aws-doc-sdk-examples.git
-```
-
 Init LocalStack:
 
 ```bash
@@ -33,9 +26,9 @@ Invoke the lambda function:
 make invoke
 ```
 
-You can modify the `src/lambda_handle.py` file and invoke the lambda without creating the lambda again.
+You can modify the `src/lambda_handle.py` file and invoke the lambda without creating it again.
 
-You can see the logs in the `src/lambda-logs.log` file.
+The lambda's output is stored in the `src/output.txt` file, its value must be `{"result":"/foo/bar"}`.
 
 Note. When I run the previous commands, the terminal where I executed the `make run` command shows `WARN --- [uest_thread)] l.utils.docker_utils       : Error while performing automatic host path replacement for path '/home/user/aws/lambda/local/lambda/src/' to source '/home/user/.cache/localstack/volume'`, despite that, the lamba is executed correctly.
 
