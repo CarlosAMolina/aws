@@ -11,7 +11,7 @@
       "name": "foo-bucket"
     },
     "object": {
-      "key": "path1/file.csv"
+      "key": "path1/data-from-foo-20211111.csv"
     },
     "reason": "PutObject"
   }
