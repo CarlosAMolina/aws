@@ -4,7 +4,9 @@ Project to deploy a step function and lambdas locally.
 
 ## Requirements
 
-Configure dummy AWS credentials if no configuration has been done yet:
+- AWS SAM CLI
+- AWS SF local Docker.
+- Configure dummy AWS credentials if no configuration has been done yet:
 
 ```bash
 echo -e "[default]\naws_access_key_id = foo\naws_secret_access_key = foo" > ~/.aws/credentials
@@ -24,6 +26,7 @@ sam local start-lambda
 Run the local step-function Docker:
 
 ```bash
+cd ..
 make run
 ```
 
