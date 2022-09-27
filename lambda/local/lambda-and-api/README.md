@@ -1,4 +1,6 @@
-## Tutorial
+## Introduction
+
+This project deploys a lambda locally using SAM.
 
 ### Build
 

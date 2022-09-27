@@ -1,3 +1,7 @@
+## Introduction
+
+This project deploys a lambda locally using LocalStack.
+
 ## Requirements
 
 Install the `requirements.txt` file:
