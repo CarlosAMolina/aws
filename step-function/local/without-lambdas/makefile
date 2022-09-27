@@ -10,7 +10,8 @@ create:
 	aws stepfunctions create-state-machine \
 		--endpoint-url http://localhost:8083 \
 		--definition file://state-machine/state-machine.asl.json \
-		--name "LocalTesting" --role-arn "arn:aws:iam::123456789012:role/DummyRole"
+		--name "LocalTesting" \
+		--role-arn "arn:aws:iam::123456789012:role/DummyRole"
 
 correct-test-path-1:
 	aws stepfunctions start-execution \
