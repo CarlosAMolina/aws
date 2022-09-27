@@ -27,6 +27,12 @@ You can test the API accessing the following URL:
 http://127.0.0.1:3000/hello
 ```
 
+Or you can call the lambda directly:
+
+```bash
+sam local invoke "HelloWorldFunction" -e events/event.json
+```
+
 ### Modify the lambda
 
 You can edit the lambda without restart the execution by modifying the following file:
