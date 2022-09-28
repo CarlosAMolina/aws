@@ -1,5 +1,5 @@
 {
-  "Comment": "A State Machine that process a video file",
+  "Comment": "A State Machine that manages different files",
   "StartAt": "CheckPath",
   "States": {
     "CheckPath": {
