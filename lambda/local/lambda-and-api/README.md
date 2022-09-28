@@ -4,15 +4,20 @@ This project deploys a lambda locally using SAM.
 
 ### Build
 
-#### Change Python runtime
+```bash
+sam init # Select options `1 - AWS Quick Start...`, `1 - Hello World Example`, answer yes to the question `Use the most popular runtime ... (Python and zip)` and default answer for the rest of questions.
+cd sam-app
+# `vi template.yaml` if you want to modify Runtime Python version.
+sam build
+```
 
-Before execute the `sam build` command, you can edit the `sam-app/template.yaml` file and set the desired `Runtime: pythonX.X` value.
+As the comments show, before execute the `sam build` command, you can edit the `sam-app/template.yaml` file and set the desired `Runtime: pythonX.X` value.
 
 ### Test
 
 #### Local
 
-The AWS Docker must be configured.
+##### Run API
 
 After build with SAM, runt the app:
 
@@ -33,6 +38,13 @@ Or you can call the lambda directly:
 sam local invoke "HelloWorldFunction" -e events/event.json
 ```
 
+##### Run Lambda
+
+```bash
+sam local start-lambda
+sam local invoke "HelloWorldFunction" -e events/event.json
+```
+
 ### Modify the lambda
 
 You can edit the lambda without restart the execution by modifying the following file:
@@ -41,11 +53,11 @@ You can edit the lambda without restart the execution by modifying the following
 vi sam-app/.aws-sam/build/HelloWorldFunction/app.py
 ```
 
-
 ## Resources
 
 - Install AWS SAM CLI
-<https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html>
+  - <https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html>
 
 - Tutorial
-<https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-hello-world.html>
+  - <https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-hello-world.html>
+  - <https://docs.aws.amazon.com/step-functions/latest/dg/sfn-local-lambda.html>

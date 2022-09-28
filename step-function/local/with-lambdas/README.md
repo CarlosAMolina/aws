@@ -14,23 +14,24 @@ echo -e "[default]\naws_access_key_id = foo\naws_secret_access_key = foo" > ~/.a
 
 ## Run the project
 
-First, create the app with SAM (see the `Resources` section).
-
-Run the lambda:
+First, create and start the lambda with SAM locally:
 
 ```bash
+sam init # Select options `1 - AWS Quick Start...`, `1 - Hello World Example`, answer yes to the question `Use the most popular runtime ... (Python and zip)` and default answer for the rest of questions.
 cd sam-app
+# `vi template.yaml` if you want to modify Runtime Python version.
+sam build
 sam local start-lambda
 ```
 
-Run the local step-function Docker:
+In a new terminal, run the local step-function Docker:
 
 ```bash
 cd ..
 make run
 ```
 
-Create the step-function:
+In a new terminal, create the step-function:
 
 ```bash
 make create
@@ -44,6 +45,8 @@ make invoke
 
 ## Resources
 
-- Local lambda with SAM: see the folder `lambda/local/lambda-and-api` in this project. 
+- Local lambda with SAM:
+    - <https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-hello-world.html>
+    - <https://docs.aws.amazon.com/step-functions/latest/dg/sfn-local-lambda.html>
 
 - Tutorial: <https://docs.aws.amazon.com/step-functions/latest/dg/sfn-local-lambda.html#create-local-statemachine>
