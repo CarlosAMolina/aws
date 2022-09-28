@@ -32,7 +32,7 @@ correct-test-path-not-managed:
 		--endpoint http://localhost:8083 \
 		--name CorrectTestPathNotManaged \
 		--input file://state-machine/test/input-path-not-managed.json \
-		--state-machine arn:aws:states:us-east-1:123456789012:stateMachine:LocalTesting#CorrectPathTest
+		--state-machine arn:aws:states:us-east-1:123456789012:stateMachine:LocalTesting
 
 all: create correct-test-path-1 correct-test-path-2 correct-test-path-not-managed
 
