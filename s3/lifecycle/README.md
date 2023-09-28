@@ -11,7 +11,7 @@ aws s3api get-object --bucket BUCKET_NAME --key FILE_S3_URI DOWNLOADED_FILE
 Example:
 
 ```bash
-# aws s3api get-object --bucket weather --key 20230928/january.csv january.csv
+$ aws s3api get-object --bucket weather --key 20230928/january.csv january.csv
 {
     "AcceptRanges": "bytes",
     "Expiration": "expiry-date=\"Sun, 01 Oct 2023 00:00:00 GMT\", rule-id=\"two-days\"",
@@ -23,3 +23,7 @@ Example:
     "Metadata": {}
 }
 ```
+
+### The lifecycle sets a different expiration date for each file or all files will be deleted each X days?
+
+If you have a rule to delete files each two days for example, when you upload a file, the expiration date is the upload date plus two days, each uploaded file is going to have a different expiration date.
