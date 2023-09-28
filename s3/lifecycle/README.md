@@ -6,5 +6,20 @@ To retrieve the expiration date see the `How to find when objects will expire` s
 
 ```bash
 aws s3api get-object --bucket BUCKET_NAME --key FILE_S3_URI DOWNLOADED_FILE
+```
+
+Example:
+
+```bash
 # aws s3api get-object --bucket weather --key 20230928/january.csv january.csv
+{
+    "AcceptRanges": "bytes",
+    "Expiration": "expiry-date=\"Sun, 01 Oct 2023 00:00:00 GMT\", rule-id=\"two-days\"",
+    "LastModified": "Thu, 28 Sep 2023 10:24:55 GMT",
+    "ContentLength": 14,
+    "ETag": \"ffddc...",
+    "ContentType": "text/plain",
+    "ServerSideEncryption": "AES256",
+    "Metadata": {}
+}
 ```
