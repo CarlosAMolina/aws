@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e # Exit if any command fails.
+
+aws_account_id="123456789012" # TODO
+aws_region="eu-west-1"
+sf_names=(
+"TODO"
+"TODO"
+)
+
+mkdir $aws_account_id
+for sf_name in ${sf_names[@]}
+do
+  sf_arn=arn:aws:states:$aws_region:$aws_account_id:stateMachine:$sf_name
+  echo "Start exporting ARN: $sf_arn"
+  aws stepfunctions describe-state-machine --region $aws_region --output text --query definition --state-machine-arn $sf_arn > $aws_account_id/$sf_name.json
+done
