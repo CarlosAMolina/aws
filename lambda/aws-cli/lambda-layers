@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# [Cli functions](https://docs.aws.amazon.com/cli/latest/userguide/cli_lambda_code_examples.html)
+# [Search lambda names starts with](https://stackoverflow.com/questions/48386497/aws-lambda-list-functions-filter-out-just-function-names)
+# [Filter lambda values](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-filter.html)
+
+set -e # Exit if any command fails.
+
+aws_region="eu-west-1"
+aws lambda list-functions --region $aws_region --query "Functions[?starts_with(FunctionName, 'spain_')] | [*].[FunctionName, Layers[*].Arn]" > /tmp/lambdas.json
