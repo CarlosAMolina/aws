@@ -35,26 +35,22 @@ class S3Objects:
         self._bucket_name = bucket_name
         self._s3_resource = boto3.resource("s3")
         self._s3_client = boto3.client("s3")
+        self._main_path = Path("/tmp")
 
     def create_bucket(self):
         bucket = self._s3_resource.Bucket(self._bucket_name)
         bucket.create()
 
     def upload_files(self):
-        main_path = Path("/tmp")
-        self._upload_files(main_path)
-        self._upload_folder(main_path)
-
-    def _upload_files(self, main_path: Path):
         number_of_files = 3
         for index in range(number_of_files):
-            key = str(main_path.joinpath(f"foo-{index}.html"))
+            key = str(self._main_path.joinpath(f"foo-{index}.html"))
             self._s3_client.put_object(
                 Body=self._get_random_string(), Bucket=self._bucket_name, Key=key
             )
 
-    def _upload_folder(self, main_path: Path):
-        key = str(main_path.joinpath("folder-1/foo.txt"))
+    def upload_folder(self):
+        key = str(self._main_path.joinpath("folder-1/foo.txt"))
         self._s3_client.put_object(
             Body=self._get_random_string(), Bucket=self._bucket_name, Key=key
         )

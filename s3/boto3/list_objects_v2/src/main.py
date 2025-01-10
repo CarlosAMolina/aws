@@ -58,6 +58,7 @@ def run():
     s3_objects = S3Objects(bucket)
     s3_objects.create_bucket()
     s3_objects.upload_files()
+    s3_objects.upload_folder()
     s3_client = S3Client()
     s3_client.get_and_show_maximum_response()
     s3_client.get_and_show_with_start_listing_from()
