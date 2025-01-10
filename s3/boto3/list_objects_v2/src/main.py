@@ -33,8 +33,8 @@ class S3Client:
 
     def _has_s3_more_objects_to_retrieve(self, response: dict) -> bool:
         """
-        response["IsTruncated"] is True: # Invalid to know if all objects were
-        returned, using MaxKeys -> IsTruncated=True
+        `response["IsTruncated"] is True` is not valid to know if all objects were
+        retrieved because when using `MaxKeys`, `IsTruncated` is True.
         """
         return response.get("Contents") is not None
 
