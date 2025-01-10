@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import random
 import string
 
@@ -41,12 +42,12 @@ class S3Objects:
 
     def upload_files(self):
         number_of_files = 3
+        main_path = Path("/tmp")
         for index in range(number_of_files):
-            content = self._get_random_string()
-            file_name = f"foo-{index}.html"
-            prefix = "/tmp/"
-            key = f"{prefix}{file_name}"
-            self._s3_client.put_object(Body=content, Bucket=self._bucket_name, Key=key)
+            key = str(main_path.joinpath(f"foo-{index}.html"))
+            self._s3_client.put_object(Body=self._get_random_string(), Bucket=self._bucket_name, Key=key)
+        key = str(main_path.joinpath("folder-1/foo.txt"))
+        self._s3_client.put_object(Body=self._get_random_string(), Bucket=self._bucket_name, Key=key)
 
     @staticmethod
     def _get_random_string() -> str:
