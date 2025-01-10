@@ -21,20 +21,23 @@ class S3Client:
     def get_and_show_with_start_listing_from(self):
         print(f"Init get_and_show_with_start_listing_from")
         max_keys = 2
-        response = self._s3_client.list_objects_v2(
-            Bucket=bucket, Prefix=path, MaxKeys=max_keys
-        )
-        # while response["IsTruncated"] is True: # Invalid to know if all objects were returned, using MaxKeys -> IsTruncated=True
-        while self._has_s3_more_objects_to_retrieve(response):
-            self._s3_printer.show_contents(response)
-            last_key = response["Contents"][-1]["Key"]
-            print(f"last_key={last_key}")
+        last_key = ''
+        while True:
             response = self._s3_client.list_objects_v2(
                 Bucket=bucket, Prefix=path, MaxKeys=max_keys, StartAfter=last_key
             )
+            if not self._has_s3_more_objects_to_retrieve(response):
+                break
+            self._s3_printer.show_contents(response)
+            last_key = response["Contents"][-1]["Key"]
+            print(f"last_key={last_key}")
         print("All data has been retrieved")
 
     def _has_s3_more_objects_to_retrieve(self, response: dict) -> bool:
+        """
+        response["IsTruncated"] is True: # Invalid to know if all objects were
+        returned, using MaxKeys -> IsTruncated=True
+        """
         return response.get("Contents") is not None
 
 
@@ -61,7 +64,7 @@ def run():
     #S3Printer().show_response_and_contents(s3_client.get_maximum_response())
     s3_objects.upload_folder()
     assert s3_client.get_maximum_response()['KeyCount'] == 4
-    #s3_client.get_and_show_with_start_listing_from()
+    s3_client.get_and_show_with_start_listing_from()
     S3Server().stop()
 
 
