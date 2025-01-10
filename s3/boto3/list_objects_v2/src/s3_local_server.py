@@ -1,4 +1,6 @@
 import os
+import random
+import string
 
 import boto3
 from moto import mock_aws
@@ -38,10 +40,17 @@ class S3Objects:
         bucket.create()
 
     def upload_files(self):
-        content = "foo"
-        file_name = "foo.html"
-        prefix = "/tmp/"
-        key = f"{prefix}{file_name}"
-        self._s3_client.put_object(
-            Body=content, Bucket=self._bucket_name, Key=key, ContentType="text/html"
-        )
+        number_of_files = 3
+        for index in range(number_of_files):
+            content = self._get_random_string()
+            file_name = f"foo-{index}.html"
+            prefix = "/tmp/"
+            key = f"{prefix}{file_name}"
+            self._s3_client.put_object(
+                Body=content, Bucket=self._bucket_name, Key=key, ContentType="text/html"
+            )
+
+    @staticmethod
+    def _get_random_string() -> str:
+        length = random.randint(5, 20)
+        return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
