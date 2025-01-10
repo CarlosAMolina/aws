@@ -14,14 +14,12 @@ class S3Client:
         self._s3_printer = S3Printer()
 
     def get_maximum_response(self) -> dict:
-        return self._s3_client.list_objects_v2(
-            Bucket=bucket, Prefix=path, MaxKeys=1000
-        )
+        return self._s3_client.list_objects_v2(Bucket=bucket, Prefix=path, MaxKeys=1000)
 
     def get_and_show_with_start_listing_from(self):
         print(f"Init get_and_show_with_start_listing_from")
         max_keys = 2
-        last_key = ''
+        last_key = ""
         while True:
             response = self._s3_client.list_objects_v2(
                 Bucket=bucket, Prefix=path, MaxKeys=max_keys, StartAfter=last_key
@@ -60,10 +58,10 @@ def run():
     s3_objects.create_bucket()
     s3_objects.upload_files()
     s3_client = S3Client()
-    assert s3_client.get_maximum_response()['KeyCount'] == 3
-    #S3Printer().show_response_and_contents(s3_client.get_maximum_response())
+    assert s3_client.get_maximum_response()["KeyCount"] == 3
+    # S3Printer().show_response_and_contents(s3_client.get_maximum_response())
     s3_objects.upload_folder()
-    assert s3_client.get_maximum_response()['KeyCount'] == 4
+    assert s3_client.get_maximum_response()["KeyCount"] == 4
     s3_client.get_and_show_with_start_listing_from()
     S3Server().stop()
 
