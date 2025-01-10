@@ -53,4 +53,4 @@ class S3Objects:
     @staticmethod
     def _get_random_string() -> str:
         length = random.randint(5, 20)
-        return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+        return "".join(random.choice(string.ascii_lowercase) for _ in range(length))
