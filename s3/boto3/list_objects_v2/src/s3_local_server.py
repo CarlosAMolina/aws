@@ -41,13 +41,23 @@ class S3Objects:
         bucket.create()
 
     def upload_files(self):
-        number_of_files = 3
         main_path = Path("/tmp")
+        self._upload_files(main_path)
+        self._upload_folder(main_path)
+
+    def _upload_files(self, main_path: Path):
+        number_of_files = 3
         for index in range(number_of_files):
             key = str(main_path.joinpath(f"foo-{index}.html"))
-            self._s3_client.put_object(Body=self._get_random_string(), Bucket=self._bucket_name, Key=key)
+            self._s3_client.put_object(
+                Body=self._get_random_string(), Bucket=self._bucket_name, Key=key
+            )
+
+    def _upload_folder(self, main_path: Path):
         key = str(main_path.joinpath("folder-1/foo.txt"))
-        self._s3_client.put_object(Body=self._get_random_string(), Bucket=self._bucket_name, Key=key)
+        self._s3_client.put_object(
+            Body=self._get_random_string(), Bucket=self._bucket_name, Key=key
+        )
 
     @staticmethod
     def _get_random_string() -> str:
