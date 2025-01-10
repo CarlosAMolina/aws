@@ -1,5 +1,6 @@
 *.swp
 env
+__pycache__/
 /lambda/local/lambda/src/output.txt
 /lambda/local/lambda-and-api/sam-app/
 /step-function/local/with-lambdas/sam-app/
