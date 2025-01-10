@@ -46,9 +46,7 @@ class S3Objects:
             file_name = f"foo-{index}.html"
             prefix = "/tmp/"
             key = f"{prefix}{file_name}"
-            self._s3_client.put_object(
-                Body=content, Bucket=self._bucket_name, Key=key, ContentType="text/html"
-            )
+            self._s3_client.put_object(Body=content, Bucket=self._bucket_name, Key=key)
 
     @staticmethod
     def _get_random_string() -> str:
