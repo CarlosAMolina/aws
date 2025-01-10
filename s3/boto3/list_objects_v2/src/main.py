@@ -18,7 +18,6 @@ class S3Client:
         return self._s3_client.list_objects_v2(Bucket=bucket, Prefix=path, MaxKeys=1000)
 
     def get_and_show_with_start_listing_from(self) -> Iterator[dict]:
-        print(f"Init get_and_show_with_start_listing_from")
         max_keys = 2
         last_key = ""
         while True:
@@ -29,7 +28,7 @@ class S3Client:
                 break
             yield response
             last_key = response["Contents"][-1]["Key"]
-            #print(f"last_key={last_key}")
+            # print(f"last_key={last_key}")
 
     def _has_s3_more_objects_to_retrieve(self, response: dict) -> bool:
         """
@@ -37,6 +36,18 @@ class S3Client:
         retrieved because when using `MaxKeys`, `IsTruncated` is True.
         """
         return response.get("Contents") is not None
+
+
+class S3FoldersAnalyzer:
+    def __init__(self):
+        self._s3_client = boto3.client("s3")
+
+    def get_folders_in_the_path(self, bucket: str, query_prefix: str) -> list[str]:
+        # https://stackoverflow.com/questions/71577584/python-boto3-s3-list-only-current-directory-file-ignoring-subdirectory-files
+        response = self._s3_client.list_objects_v2(Bucket=bucket, Prefix=query_prefix, Delimiter="/")
+        if "CommonPrefixes" not in response:
+            return []
+        return [common_prefix["Prefix"] for common_prefix in response["CommonPrefixes"]]
 
 
 class S3Printer:
@@ -60,7 +71,10 @@ def run():
     s3_client = S3Client()
     assert s3_client.get_maximum_response()["KeyCount"] == 3
     # S3Printer().show_response_and_contents(s3_client.get_maximum_response())
+    s3_folders_analyzer = S3FoldersAnalyzer()
+    assert [] == s3_folders_analyzer.get_folders_in_the_path(bucket, path)
     s3_objects.upload_folder()
+    assert ['/tmp/folder-1/'] == s3_folders_analyzer.get_folders_in_the_path(bucket, path)
     assert s3_client.get_maximum_response()["KeyCount"] == 4
     for response in s3_client.get_and_show_with_start_listing_from():
         assert response["KeyCount"] == 2
