@@ -13,7 +13,7 @@ s3_client = boto3.client("s3")
 def get_and_show_maximum_response():
     print(f"Init get_and_show_maximum_response")
     response = s3_client.list_objects_v2(Bucket=bucket, Prefix=path, MaxKeys=1000)
-    show_response_and_contents(response)
+    S3Printer().show_response_and_contents(response)
 
 
 def get_and_show_with_start_listing_from():
@@ -22,7 +22,7 @@ def get_and_show_with_start_listing_from():
     response = s3_client.list_objects_v2(Bucket=bucket, Prefix=path, MaxKeys=max_keys)
     # while response["IsTruncated"] is True: # Invalid to know if all objects were returned, using MaxKeys -> IsTruncated=True
     while has_s3_more_objects_to_retrieve(response):
-        show_contents(response)
+        S3Printer().show_contents(response)
         last_key = response["Contents"][-1]["Key"]
         print(f"last_key={last_key}")
         response = s3_client.list_objects_v2(
@@ -35,17 +35,18 @@ def has_s3_more_objects_to_retrieve(response: dict) -> bool:
     return response.get("Contents") is not None
 
 
-def show_response_and_contents(response: dict):
-    print(response)
-    show_contents(response)
+class S3Printer:
+    def show_response_and_contents(self, response: dict):
+        print(response)
+        self.show_contents(response)
 
 
-def show_contents(response: dict):
-    contents = response["Contents"]
-    # print(len(contents))
-    # print(contents)
-    for index, content in enumerate(contents):
-        print(index, content)
+    def show_contents(self, response: dict):
+        contents = response["Contents"]
+        # print(len(contents))
+        # print(contents)
+        for index, content in enumerate(contents):
+            print(index, content)
 
 
 def run():
